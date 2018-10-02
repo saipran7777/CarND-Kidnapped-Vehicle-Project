@@ -67,7 +67,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	// Different equations based on if yaw_rate is zero or not
 	for (int i = 0; i < num_particles; ++i){
 
-		if (fabs(yaw_rate) < 0.00001){
+		if (fabs(yaw_rate) > 0.00001){
 			particles[i].x += (velocity / yaw_rate) * (sin(particles[i].theta + (yaw_rate * delta_t)) - sin(particles[i].theta));
 			particles[i].y += (velocity / yaw_rate) * (cos(particles[i].theta) - cos(particles[i].theta + (yaw_rate * delta_t)));
 			particles[i].theta += yaw_rate * delta_t;
